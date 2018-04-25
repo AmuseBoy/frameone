@@ -1,0 +1,13 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: frameone
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/orcl
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: demo
+    password: demo
+    type: org.apache.tomcat.jdbc.pool.DataSource
+mybatis:
+  config-location: classpath:mybatis-config.xml

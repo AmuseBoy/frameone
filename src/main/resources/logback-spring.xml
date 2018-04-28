@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 自动60s扫描该配置文件-->
+<configuration scan="true" scanperiod="60 seconds" debug="false">
+    <!--设置上下文名称-->
+    <contextName>logback</contextName>
+    <!--设置变量-->
+    <property name="log.path" value="./logs"/>
+
+    <!--将日志输出到控制台,一般不要自己定义，使用spring自带的-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!--过滤器 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--将日志输出到文件，不配置会使用默认的配置-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 正在记录的日志文件的路径及文件名 -->
+        <File>${log.path}/log.log</File>
+        <!-- 追加方式记录日志 -->
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/log.%d{yyyy-MM-dd}/.%i.gz</fileNamePattern>
+            <maxFileSize>500MB</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    <appender name="logstash" class="net.logs">
+&lt;!&ndash;
+        <de
+&ndash;&gt;
+
+    </appender>-->
+
+    <!--console会使用默认的日志输出方式-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!--root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性,和logging.level.root一样-->
+    <root level="info">
+        <!--<appender-ref ref="console" />--><!-- 默认使用自带的-->
+        <!--<appender-ref ref="file" />-->
+        <appender-ref ref="CONSOLE" /> <!-- base.xml -->
+        <appender-ref ref="FILE" />   <!-- base.xml -->
+        <appender-ref ref="file" />
+    </root>
+    <!--和logging.level.com.amuse.frameone 一样 -->
+    <logger name="com.amuse.frameone" level="info" additivity="false">
+        <!--<appender-ref ref="console"/>--><!-- 默认使用自带的-->
+        <!--<appender-ref ref="file" />-->
+        <appender-ref ref="CONSOLE" /> <!-- base.xml -->
+        <appender-ref ref="FILE" />   <!-- base.xml -->
+        <appender-ref ref="file" />
+    </logger>
+
+</configuration>

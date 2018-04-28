@@ -1,5 +1,13 @@
 server:
-  port: 8001
+  port: 8002
+debug: false #默认false,设置为true，打印debug日志
+logging:      #logback-spring.xml 会被这些参数覆盖
+  level:
+    root: info
+    com.amuse.frameone: debug
+  path: ./logs
+#  file: spring.log #默认是spring.log
+#  config: classpath:logback-spring.xml #日志配置文件
 spring:
   application:
     name: frameone

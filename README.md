@@ -4,4 +4,6 @@
 
 2.spring boot集成myBatis
 
-3.logback日志记录 
+3.logback日志记录三种形式，控制台、file、logstash
+
+4.springboot和redis的集成使用，和使用分布式锁的实现

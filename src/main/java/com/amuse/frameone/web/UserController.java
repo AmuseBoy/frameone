@@ -1,12 +1,12 @@
 package com.amuse.frameone.web;
 
 import com.amuse.frameone.common.model.User;
+import com.amuse.frameone.common.util.ResultUtil;
 import com.amuse.frameone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * @author 刘培振
@@ -27,10 +27,19 @@ public class UserController {
      * @Date 2018/4/22-20:36
      */
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    public User getUser(@RequestParam String id){
-        return userService.getUser(id);
+    public Map<String, Object> getUser(@RequestParam String id){
+        User user = userService.getUser(id);
+        return new ResultUtil().success(user);
     }
 
 
-
+    /**
+     * 新建用户
+     * @param user
+     */
+    @RequestMapping(value = "/addUser",method = RequestMethod.POST)
+    public Map<String,Object> addUser(@RequestBody User user){
+        userService.addUser(user);
+        return new ResultUtil().success();
+    }
 }

@@ -9,3 +9,10 @@
 4.springboot和redis的集成使用，和使用分布式锁的实现
 
 5.使用springboot-dev-tools热加载工具，提升开发效率
+
+6.定制自己的banner
+
+7.springMVC实用的一些用法，FeatureController
+
+8.spring-session使用redis存储session, 开启配置store-type: redis,开启注解 @EnableRedisHttpSession
+

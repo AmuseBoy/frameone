@@ -11,6 +11,8 @@ logging:      #logback-spring.xml 会被这些参数覆盖
 spring:
   application:
     name: frameone
+  session:
+    store-type: redis
   redis:
     host: localhost
     port: 6379
@@ -21,7 +23,7 @@ spring:
         max-idle: 8
         max-wait: 1ms
         min-idle: 0
-    timeout: 10ms
+    timeout: 10
   datasource:
     url: jdbc:oracle:thin:@localhost:1521/orcl
     driver-class-name: oracle.jdbc.OracleDriver

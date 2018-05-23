@@ -10,4 +10,6 @@ import com.amuse.frameone.common.model.User;
 public interface UserMapper {
 
     User getUser(String id);
+
+    void addUser(User user);
 }

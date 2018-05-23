@@ -7,7 +7,7 @@
         <result column="sex" property="sex" jdbcType="VARCHAR" />
         <result column="birth" property="birth" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
-        <result column="password" property="pass_word" jdbcType="VARCHAR" />
+        <result column="pass_word" property="password" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -22,9 +22,9 @@
     </select>
 
 
-<!--    <insert id="addDemo" parameterType="com.baiwang.cloud.common.model.Demo">
-        insert into demo (id,name,age,address) values (#{id},#{name},#{age},#{address})
-    </insert>-->
+    <insert id="addUser" parameterType="com.amuse.frameone.common.model.User" >
+        insert into users (id, name, sex, birth, email, pass_word) values (#{id},#{name},#{sex},#{birth},#{email},#{password})
+    </insert>
 
 
 </mapper>

@@ -16,3 +16,5 @@
 
 8.spring-session使用redis存储session, 开启配置store-type: redis,开启注解 @EnableRedisHttpSession
 
+9.获取配置文件的几种方式，env、使用@ConfigurationProperties+@Component注入或@ConfigurationProperties+@Bean注入
+

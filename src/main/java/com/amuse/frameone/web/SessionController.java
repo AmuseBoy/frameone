@@ -56,24 +56,32 @@ public class SessionController {
     /**
      * http://localhost:8002/session/sessions
      * 不涉及session的操作，是不会产生session
-     * @param request
+     * @param session
      * @return
      */
     @RequestMapping(value = "/sessions", method = RequestMethod.GET)
-    public Map<String, Object> sessions (HttpServletRequest request){
+    public Map<String, Object> sessions (HttpSession session){
         Map<String, Object> map = new HashMap<>();
-        //map.put("sessionId", request.getSession().getId());
+        map.put("sessionId", session.getId());
         return map;
     }
 
     /**
-     * http://localhost:8002/session/home
+     * http://localhost:8002/session/login?username=liu&password=
      * @param session
      * @return
      */
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home(HttpSession session) {
-        session.setAttribute("test", new Date());
-        return "Hello World!";
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(HttpSession session,@RequestParam String username,@RequestParam String password) {
+        session.setAttribute("username", username);
+        //session.setMaxInactiveInterval(60);//设置session有效期
+        return "Login Success!";
+    }
+
+    @RequestMapping(value="/logout")
+    public String logout(HttpSession session){
+        logger.info("sessionID:"+session.getId());
+        session.invalidate();//清除Session
+        return "Logout Success!";
     }
 }

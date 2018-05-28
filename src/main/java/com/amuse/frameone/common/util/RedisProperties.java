@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @ClassName RedisProperties
- * @Description set方法不要静态的
+ * @Description set方法不要静态的,
  * @Author 刘培振
  * @Date 2018/4/29 14:41
  * @Version 1.0

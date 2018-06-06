@@ -1,16 +1,11 @@
 package com.amuse.frameone;
 
-import com.amuse.frameone.common.config.BookStaticProperties;
-import com.amuse.frameone.common.util.RedisProperties;
+import com.amuse.frameone.common.model.BookStaticProperties;
+import com.amuse.frameone.common.model.RedisProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 

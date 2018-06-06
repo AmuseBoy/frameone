@@ -13,8 +13,15 @@ public enum SystemEnum {
 
     SYSTEM_FAIL("99999","通讯异常"),
 
-    SERVICE_ERROR("99991","业务异常");
+    SERVICE_ERROR("99991","业务异常"),
 
+    PARAM_IS_NULL("P0001","参数不能为空"),
+
+    USER_IS_NULL("S0001","用户不存在"),
+
+    PASSWORD_ISNOT_RIGHT("S0002","密码不正确"),
+
+    LOGIN_STATUS_ERROR("S0003","登陆状态异常");
 
 
     private String code;

@@ -8,6 +8,9 @@ logging:      #logback-spring.xml 会被这些参数覆盖
   path: ./logs
 #  file: spring.log #默认是spring.log
 #  config: classpath:logback-spring.xml #日志配置文件
+security:
+  basic:
+    enabled: true #关闭spring security basic认证
 spring:
   application:
     name: frameone
@@ -31,3 +34,10 @@ spring:
     type: org.apache.tomcat.jdbc.pool.DataSource
 mybatis:
   config-location: classpath:mybatis-config.xml
+
+#jwt配置
+jwt:
+  base64Secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=
+  expiresSecond: 172800
+  client-id: 2f81d23110c84862899eb40ace9c9f51
+  name: amuseBoy

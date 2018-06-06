@@ -1,10 +1,9 @@
 package com.amuse.frameone.web;
 
-import com.amuse.frameone.common.config.BookProperties;
-import com.amuse.frameone.common.config.BookStaticProperties;
+import com.amuse.frameone.common.model.BookProperties;
+import com.amuse.frameone.common.model.BookStaticProperties;
 import com.amuse.frameone.common.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

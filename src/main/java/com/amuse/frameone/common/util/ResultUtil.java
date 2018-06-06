@@ -34,6 +34,12 @@ public class ResultUtil {
         return map;
     }
 
+    public static Map<String,Object> fail(SystemEnum systemEnum){
+        Map<String,Object> map = new HashMap<>();
+        map.put("head", new ResultHead(systemEnum));
+        return map;
+    }
+
     public static Map<String,Object> fail(String retFlag,String retMsg){
         Map<String,Object> map = new HashMap<>();
         map.put("head", new ResultHead(retFlag,retMsg));

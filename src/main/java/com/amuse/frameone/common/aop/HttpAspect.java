@@ -42,21 +42,21 @@ public class HttpAspect {
 
         ServletRequestAttributes attributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        logger.info("拦截器--url={}",request.getRequestURI());
-        logger.info("拦截器--method={}",request.getMethod());
-        logger.info("拦截器--ip={}",request.getRemoteAddr());
-        logger.info("拦截器--class_method={}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-        logger.info("拦截器--args={}",joinPoint.getArgs().toString());
+        logger.info("AOP--url={}",request.getRequestURI());
+        logger.info("AOP--method={}",request.getMethod());
+        logger.info("AOP--ip={}",request.getRemoteAddr());
+        logger.info("AOP--class_method={}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
+        logger.info("AOP--args={}",joinPoint.getArgs().toString());
     }
 
     @After("log()")
     public void doAfter(){
         endTime = System.currentTimeMillis();
-        logger.info("拦截器--costTime={}ms",endTime-startTime);
+        logger.info("AOP--costTime={}ms",endTime-startTime);
     }
 
     @AfterReturning(returning = "obj", pointcut = "log()")
     public void doAfterReturning(Object obj){
-        logger.info("拦截器--response={}",obj);
+        logger.info("AOP--response={}",obj);
     }
 }

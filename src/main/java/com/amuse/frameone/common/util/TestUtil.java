@@ -1,5 +1,8 @@
 package com.amuse.frameone.common.util;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.util.UUID;
 
 /**
@@ -12,6 +15,8 @@ import java.util.UUID;
 public class TestUtil {
 
     public static void main(String[] args) {
-        System.out.println(UUID.randomUUID().toString());
+        //System.out.println(UUID.randomUUID().toString());
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println(encoder.encode("123456"));
     }
 }

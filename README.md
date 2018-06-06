@@ -18,3 +18,6 @@
 
 9.获取配置文件的几种方式，env、使用@ConfigurationProperties+@Component注入或@ConfigurationProperties+@Bean注入
 
+10.过滤器的简单实现、拦截器的简单实现、aop的简单实现，并使用@Bean注入IOC
+
+11.使用jwt的token验证方式，登陆接口密码传输是明文，生产环境请使用https加密；

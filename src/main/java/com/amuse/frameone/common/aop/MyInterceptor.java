@@ -36,6 +36,5 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
         logger.info("afterCompletion被调用");
-        logger.info("qq{}",e);
     }
 }

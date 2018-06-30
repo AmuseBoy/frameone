@@ -26,7 +26,8 @@ public class TransactionalServiceImpl implements TransactionalService {
     @Transactional
     public void addUser(User user){
         userMapper.addUser(user);
-        throw new BusinessException(SystemEnum.SERVICE_ERROR);
+        //throw new NullPointerException();
+        //throw new BusinessException(SystemEnum.SERVICE_ERROR);
     }
 
 }

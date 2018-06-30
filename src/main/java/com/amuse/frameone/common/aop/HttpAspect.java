@@ -1,5 +1,6 @@
 package com.amuse.frameone.common.aop;
 
+import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 /**
  * @ClassName HttpAspect
@@ -46,7 +48,7 @@ public class HttpAspect {
         logger.info("AOP--method={}",request.getMethod());
         logger.info("AOP--ip={}",request.getRemoteAddr());
         logger.info("AOP--class_method={}",joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName());
-        logger.info("AOP--args={}",joinPoint.getArgs().toString());
+        logger.info("AOP--args={}",Arrays.toString(joinPoint.getArgs()));
     }
 
     @After("log()")
@@ -57,6 +59,6 @@ public class HttpAspect {
 
     @AfterReturning(returning = "obj", pointcut = "log()")
     public void doAfterReturning(Object obj){
-        logger.info("AOP--response={}",obj);
+        logger.info("AOP--response={}",JSON.toJSONString(obj));
     }
 }

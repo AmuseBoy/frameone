@@ -3,7 +3,8 @@ package com.amuse.frameone.common.util;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.UUID;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * @ClassName TestUtil
@@ -16,7 +17,24 @@ public class TestUtil {
 
     public static void main(String[] args) {
         //System.out.println(UUID.randomUUID().toString());
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        System.out.println(encoder.encode("123456"));
+//        PasswordEncoder encoder = new BCryptPasswordEncoder();
+//        System.out.println(encoder.encode("123456"));
+
+//        List<Map<String,Object>> list = new ArrayList<>();
+//        System.out.println(list.size());
+
+
+//        Date date = new Date();
+//        System.out.println(date != null);
+
+//        List<String> list = new ArrayList<>();
+//        list.add("ss");
+//        list.add("xx");
+//        System.out.println(list.toString());
+
+        Object[] objects = new Object[]{"ss","xx"};
+        String[] arrays = new String[]{"xx","ww"};
+        //System.out.println(Arrays.toString(objects));
+        System.out.println(Arrays.asList(arrays));
     }
 }

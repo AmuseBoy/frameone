@@ -10,7 +10,7 @@ logging:      #logback-spring.xml 会被这些参数覆盖
 #  config: classpath:logback-spring.xml #日志配置文件
 security:
   basic:
-    enabled: true #关闭spring security basic认证
+    enabled: false #关闭spring security basic认证
 spring:
   application:
     name: frameone

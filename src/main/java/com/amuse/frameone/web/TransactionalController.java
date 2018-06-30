@@ -4,6 +4,8 @@ package com.amuse.frameone.web;
 import com.amuse.frameone.common.model.User;
 import com.amuse.frameone.common.util.ResultUtil;
 import com.amuse.frameone.service.TransactionalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/transactional")
 public class TransactionalController {
+
+    private final static Logger logger = LoggerFactory.getLogger(TransactionalController.class);
 
     @Autowired
     private TransactionalService transactionalService;

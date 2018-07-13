@@ -3,10 +3,13 @@ package com.amuse.frameone;
 import com.amuse.frameone.common.model.BookStaticProperties;
 import com.amuse.frameone.common.model.RedisProperties;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @Configuration
@@ -16,8 +19,12 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @MapperScan("com.amuse.frameone.dao")
 public class FrameoneApplication {
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(FrameoneApplication.class, args);
 	}
+
+
+
+
+
 }

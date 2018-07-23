@@ -1,4 +1,4 @@
-package com.amuse.frameone.scheduled;
+package com.amuse.frameone.extend.scheduled;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +19,13 @@ public class MyScheduled {
     private final static Logger logger = LoggerFactory.getLogger(MyScheduled.class);
 
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 1000000)
     public void testMyScheduled(){
         logger.info("定时任务开始(1)............");
         logger.info("定时任务结束(1)............");
     }
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 1000000)
     public void testMyScheduled2(){
         logger.info("定时任务开始(2)............");
         logger.info("定时任务结束(2)............");

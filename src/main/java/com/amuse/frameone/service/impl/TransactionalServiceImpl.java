@@ -5,6 +5,8 @@ import com.amuse.frameone.common.exception.BusinessException;
 import com.amuse.frameone.common.model.User;
 import com.amuse.frameone.dao.UserMapper;
 import com.amuse.frameone.service.TransactionalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,15 +21,29 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TransactionalServiceImpl implements TransactionalService {
 
+    private final static Logger logger = LoggerFactory.getLogger(TransactionalServiceImpl.class);
+
     @Autowired
     private UserMapper userMapper;
 
     @Override
     @Transactional
     public void addUser(User user){
-        userMapper.addUser(user);
-        //throw new NullPointerException();
-        //throw new BusinessException(SystemEnum.SERVICE_ERROR);
+
+        try {
+            userMapper.addUser(user);
+            this.sss();
+
+            //throw new BusinessException(SystemEnum.SERVICE_ERROR);
+        } catch (NullPointerException e) {
+            logger.info("service捕捉异常{}:",e);
+            throw e;
+        }
     }
 
+
+    public void sss(){
+        int a =0;
+        throw new NullPointerException();
+    }
 }

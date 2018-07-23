@@ -37,8 +37,14 @@ public class TransactionalController {
      */
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     public Map<String,Object> addUser(@RequestBody User user){
-        transactionalService.addUser(user);
-        return new ResultUtil().success();
+//        try {
+            transactionalService.addUser(user);
+            return new ResultUtil().success();
+//        } catch (Exception e) {
+//            //logger.error("controller捕捉异常:",e);
+//            logger.info("controller捕捉异常{}:",e);
+//            return null;
+//        }
     }
 
 

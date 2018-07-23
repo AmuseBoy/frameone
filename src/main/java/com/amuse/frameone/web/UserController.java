@@ -39,7 +39,12 @@ public class UserController {
      */
     @RequestMapping(value = "/addUser",method = RequestMethod.POST)
     public Map<String,Object> addUser(@RequestBody User user){
-        userService.addUser(user);
+        long startTime = System.currentTimeMillis();
+        for (int i=0;i<100;i++){
+            userService.addUser(user);
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("------------sdddddddddddddddddddddddddddddddddddddddd----------------"+(endTime-startTime));
         return new ResultUtil().success();
     }
 }

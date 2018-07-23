@@ -1,5 +1,6 @@
 package com.amuse.frameone.common.util;
 
+import com.amuse.frameone.common.model.Book;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -32,9 +33,21 @@ public class TestUtil {
 //        list.add("xx");
 //        System.out.println(list.toString());
 
-        Object[] objects = new Object[]{"ss","xx"};
-        String[] arrays = new String[]{"xx","ww"};
-        //System.out.println(Arrays.toString(objects));
-        System.out.println(Arrays.asList(arrays));
+//        Object[] objects = new Object[]{"ss","xx"};
+//        String[] arrays = new String[]{"xx","ww"};
+//        //System.out.println(Arrays.toString(objects));
+//        System.out.println(Arrays.asList(arrays));
+
+//        Random random = new Random();
+//        int ra = random.nextInt(25)+1;
+//        System.out.println(ra);
+
+        Book book = new Book();
+        set(book);
+        System.out.println(book.getName());
+    }
+
+    public static void set(Book book){
+        book.setName("sss");
     }
 }

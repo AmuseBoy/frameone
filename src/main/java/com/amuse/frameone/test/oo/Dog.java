@@ -1,4 +1,4 @@
-package com.amuse.frameone.test;
+package com.amuse.frameone.test.oo;
 
 /**
  * @ClassName Dog

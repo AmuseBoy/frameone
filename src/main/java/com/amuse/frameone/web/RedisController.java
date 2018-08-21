@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.support.atomic.RedisAtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,17 +35,42 @@ public class RedisController {
     @Autowired
     private RedisService redisService;
 
+    private RedisAtomicLong redisAtomicLong;
+
     /**
      * 简单测试springboot集成的redis使用
      */
     @RequestMapping(value = "/testRedis",method = RequestMethod.GET)
     public void testRedis(){
-        stringRedisTemplate.opsForValue().set("myKey","myValue");
-        boolean hasKey = stringRedisTemplate.hasKey("myKey");
-        logger.info("是否有值:{}",hasKey);
-        RedisUtil.set("mykey2","myvalue2");
-        logger.info(RedisUtil.get("mykey2"));
+//        stringRedisTemplate.opsForValue().set("myKey","myValue");
+//        boolean hasKey = stringRedisTemplate.hasKey("myKey");
+//        logger.info("是否有值:{}",hasKey);
+//        RedisUtil.set("mykey2","myvalue2");
+//        logger.info(RedisUtil.get("mykey2"));
+//        boolean bool = redisTemplate.opsForValue().setIfAbsent("myKey","hhee");
+//        logger.info("setIfAbsent:{}",bool);
+        String a = (String) redisTemplate.opsForSet().pop("applyAut");
+        System.out.println(a);
     }
+
+    @RequestMapping(value = "/testAtomicCount", method = RequestMethod.GET)
+    public void getAtomicCount() {
+        long l = this.getRedisAtomicLong();
+        logger.info("RedisAtomicLong原子性计数:{}",l);
+    }
+
+    /**
+     * 原子性计数
+     * @return
+     */
+    private long getRedisAtomicLong(){
+        if(null == redisAtomicLong){
+            redisAtomicLong = new RedisAtomicLong("atomicCount",redisTemplate.getConnectionFactory());
+        }
+        return redisAtomicLong.incrementAndGet();
+    }
+
+
 
 
     /**

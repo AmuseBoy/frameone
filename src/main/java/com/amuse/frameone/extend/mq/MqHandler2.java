@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @Version 1.0
  */
 @Component
-@RabbitListener(queues = "${mq.testQueue}")
+@RabbitListener(queues = "${mq.topicQueue}")
 public class MqHandler2 {
 
     private static final Logger logger = LoggerFactory.getLogger(MqHandler2.class);

@@ -67,6 +67,10 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * 重写后才能方便输出实际内容
+     * @return
+     */
     @Override
     public String toString() {
         return "User{" +

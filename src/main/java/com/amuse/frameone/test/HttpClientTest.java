@@ -30,11 +30,9 @@ public class HttpClientTest {
                 System.out.println(jsonString);
                 JSONObject jsonObject = JSON.parseObject(jsonString);
                 System.out.println(jsonObject.getJSONArray("data").get(0));
-                return ;
             }
         } catch (Exception e){
             System.out.println("异常"+e);
         }
-
     }
 }

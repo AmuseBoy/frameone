@@ -37,6 +37,15 @@ spring:
     port: 5672
     username: root
     password: pwd123456
+    publisher-confirms: true #消息发送确认
+    publisher-returns: true #消息发送失败退回
+    listener:
+      simple:
+        acknowledge-mode: manual #手动ack确认消息
+        retry:
+          max-attempts: 3
+          enabled: true
+        concurrency: 1 #一个队列只有一个消费者，保证顺序消费
 mybatis:
   config-location: classpath:mybatis-config.xml
 
@@ -48,4 +57,9 @@ jwt:
   name: amuseBoy
 #mq配置
 mq:
-  testQueue: TestRabbit
+  directExchange: directExchange
+  directQueue: directQueue
+  directRoutingKey: directRoutingKey
+  topicExchange: topicExchange
+  topicQueue: topic.queue.test
+  topicRoutingKey: topic.queue.#

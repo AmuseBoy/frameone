@@ -54,22 +54,38 @@ public class TestUtil {
 //        list = Arrays.asList(s);
 //        list.subList(0,9);
 
-        List<String> list = new ArrayList<>();
-        list.add("s");
-        list.add("b");
-        List<String> list1 = new ArrayList<>();
-        list1.add("s");
-        list1.add("s");
-        list1.add("s");
-        list1.add("b");
-        list1.add("r");
-        list1.add("t");
-        System.out.println(list1.size());
-//        for (String s : list){
-//            list1.remove(s);
+//        List<String> list = new ArrayList<>();
+//        list.add("s");
+//        list.add("b");
+//        List<String> list1 = new ArrayList<>();
+//        list1.add("s");
+//        list1.add("s");
+//        list1.add("s");
+//        list1.add("b");
+//        list1.add("r");
+//        list1.add("t");
+//        System.out.println(list1.size());
+////        for (String s : list){
+////            list1.remove(s);
+////        }
+//        list1.removeAll(list);
+//        System.out.println(list1.size());
+
+
+
+
+//        //生成唯一数字
+//        UUID uuid = UUID.randomUUID();
+//        System.out.println(uuid);
+//        System.out.println(Math.abs(uuid.getMostSignificantBits()));
+//        Integer i = 1;
+//        if(i.equals(1)){
+//            System.out.println("sss");
 //        }
-        list1.removeAll(list);
-        System.out.println(list1.size());
+//        long l = 1536215100000l;
+//        long ls = 1535699922822l;
+//        System.out.println(new Date(l)+" "+new Date(ls));
+        System.out.println(new Date().getTime());
     }
 
     public static void set(Book book){

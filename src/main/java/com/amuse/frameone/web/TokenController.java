@@ -69,7 +69,7 @@ public class TokenController {
             return new ResultUtil().fail(SystemEnum.PASSWORD_ISNOT_RIGHT);
         }
         //生成token
-        String jwtToken = JwtUtil.createJWT(userReq.getId(),"admin_role",jwt);
+        String jwtToken = JwtUtil.createJWT(userReq.getName(),"admin_role",jwt);
         Map<String,Object> map = new HashMap<>();
         map.put("token","bearer;"+jwtToken);
         return new ResultUtil().success(map);

@@ -1,5 +1,10 @@
 package com.amuse.frameone.common.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 /**
  * @author 刘培振
  * @desc 用户
@@ -7,23 +12,26 @@ package com.amuse.frameone.common.model;
  **/
 public class User {
 
-    private String id;
+    private Integer id;
 
     private String name;
 
+    private Integer age;
+
     private String sex;
 
-    private String birth;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birth;
 
     private String email;
 
     private String password;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -35,6 +43,14 @@ public class User {
         this.name = name;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     public String getSex() {
         return sex;
     }
@@ -43,11 +59,11 @@ public class User {
         this.sex = sex;
     }
 
-    public String getBirth() {
+    public Date getBirth() {
         return birth;
     }
 
-    public void setBirth(String birth) {
+    public void setBirth(Date birth) {
         this.birth = birth;
     }
 
@@ -76,6 +92,7 @@ public class User {
         return "User{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", age='" + age + '\'' +
                 ", sex='" + sex + '\'' +
                 ", birth='" + birth + '\'' +
                 ", email='" + email + '\'' +

@@ -27,7 +27,7 @@ public class UserController {
      * @Date 2018/4/22-20:36
      */
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    public Map<String, Object> getUser(@RequestParam String id){
+    public Map<String, Object> getUser(@RequestParam Integer id){
         User user = userService.getUser(id);
         return new ResultUtil().success(user);
     }

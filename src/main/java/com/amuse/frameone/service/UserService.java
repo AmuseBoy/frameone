@@ -9,7 +9,7 @@ import com.amuse.frameone.common.model.User;
  **/
 public interface UserService {
 
-    User getUser(String id);
+    User getUser(Integer id);
 
     void addUser(User user);
 }

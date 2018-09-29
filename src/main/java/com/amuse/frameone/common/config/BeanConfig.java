@@ -26,7 +26,7 @@ public class BeanConfig {
      * 使用注入
      * @return
      */
-    @Bean
+    @Bean(name = "book")
     @ConfigurationProperties(prefix = "book")
     public Book getBook(){
         return new Book();

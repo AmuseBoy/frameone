@@ -145,6 +145,13 @@
 			<version>3.6</version>
 		</dependency>
 
+		<!-- apache连接池 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
 		<!-- RocketMQ -->
 		<dependency>
 			<groupId>org.apache.rocketmq</groupId>

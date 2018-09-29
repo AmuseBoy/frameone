@@ -1,5 +1,8 @@
 package com.amuse.frameone.test.ftp;
 
+import com.amuse.frameone.common.config.FtpPoolConfig;
+import com.amuse.frameone.extend.ftp.FTPClientFactory;
+import com.amuse.frameone.extend.ftp.FTPClientPool;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
@@ -20,35 +23,37 @@ public class FtpTest {
 
     private final static Logger logger = LoggerFactory.getLogger(FtpTest.class);
 
-    public static void main(String[] args) {
-        FTPClient ftpClient = new FTPClient();
-        try {
-            InetAddress address = InetAddress.getByName("192.168.32.128");
-            ftpClient.connect(address,21);
-            ftpClient.setControlEncoding("UTF-8");
-            ftpClient.enterLocalPassiveMode();
-            int replyCode = ftpClient.getReplyCode();
-            if(!FTPReply.isPositiveCompletion(replyCode)){
-                logger.info("连接FTP失败:"+replyCode);
-            }
-            boolean result = ftpClient.login("admin","admin");
-            if(!result){
-                logger.info("登陆FTP失败:"+result);
-            }
-            ftpClient.changeWorkingDirectory("/");
-            String[] names = ftpClient.listNames();
-            for (String s : names){
-                logger.info("fielName:"+s);
-            }
+//    public static void main(String[] args) {
+//        FTPClient ftpClient = new FTPClient();
+//        try {
+//            InetAddress address = InetAddress.getByName("192.168.32.128");
+//            ftpClient.connect(address,21);
+//            ftpClient.setControlEncoding("UTF-8");
+//            ftpClient.enterLocalPassiveMode();
+//            int replyCode = ftpClient.getReplyCode();
+//            if(!FTPReply.isPositiveCompletion(replyCode)){
+//                logger.info("连接FTP失败:"+replyCode);
+//            }
+//            boolean result = ftpClient.login("admin","admin");
+//            if(!result){
+//                logger.info("登陆FTP失败:"+result);
+//            }
+//            ftpClient.changeWorkingDirectory("/");
+//            String[] names = ftpClient.listNames();
+//            for (String s : names){
+//                logger.info("fielName:"+s);
+//            }
+//
+//        } catch (Exception e) {
+//            logger.error("{}",e);
+//        }finally {
+//            try {
+//                ftpClient.disconnect();
+//            } catch (IOException e) {
+//                logger.error("{}",e);
+//            }
+//        }
+//    }
 
-        } catch (Exception e) {
-            logger.error("{}",e);
-        }finally {
-            try {
-                ftpClient.disconnect();
-            } catch (IOException e) {
-                logger.error("{}",e);
-            }
-        }
-    }
+
 }

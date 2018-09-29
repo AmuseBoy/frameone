@@ -3,11 +3,19 @@ package com.amuse.frameone.web;
 import com.amuse.frameone.common.model.BookProperties;
 import com.amuse.frameone.common.model.BookStaticProperties;
 import com.amuse.frameone.common.model.Book;
+import com.amuse.frameone.common.util.ApplicationContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName FeatureController
@@ -60,4 +68,39 @@ public class FeatureController {
         System.out.println(BookStaticProperties.getName()+"------------");
         return BookStaticProperties.getName();
     }
+
+    /**
+     * HttpServletRequest使用方式
+     * http://localhost:8002/feature/response?id=qqq
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "/response", method = RequestMethod.GET)
+    public void response(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String id = (String) request.getAttribute("id");
+        //...逻辑处理
+        Map<String,Object> map = new HashMap<>();
+        map.put("res","成功");
+        response.setContentType("application/json; charset=utf-8");
+        response.getOutputStream().write(map.toString().getBytes("UTF-8"));
+    }
+
+    /**
+     * 使用ApplicationContextAware获取bean
+     * 使用WebApplicationContextUtils获取bean
+     * @return
+     */
+    @RequestMapping(value = "/getBookByBeanUtil", method = RequestMethod.GET)
+    public Book getBookByBeanUtil(HttpServletRequest request){
+        //使用ApplicationContextAware获取bean
+        /*ApplicationContext ac = ApplicationContextUtil.getApplicationContext();
+        Book book = (Book) ac.getBean("book");
+        return book;*/
+
+        //使用WebApplicationContextUtils获取bean
+        ApplicationContext ac = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
+        Book book = (Book) ac.getBean("book");
+        return book;
+    }
+
 }

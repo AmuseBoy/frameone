@@ -13,23 +13,59 @@ import java.util.concurrent.*;
  */
 public class ThreadPool {
 
+    /**
+     * 保证单例
+     */
+    private volatile static ThreadPoolExecutor executor = null;
 
-    public static void main(String[] args) {
-        Thread thread = new Thread(new MyRunable());
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(6,10,5,
-                TimeUnit.SECONDS,new SynchronousQueue<>());
-        //ExecutorService executor = Executors.newFixedThreadPool(3);
-        for(int i=0;i<10;i++){
-            executor.execute(thread);
+    /**
+     * 线程池
+     * @return
+     */
+    public static ThreadPoolExecutor getThreadPool() {
+        if (null == executor) {
+            synchronized (ThreadPool.class){
+                if(null == executor){
+                    executor = new ThreadPoolExecutor(10, 10, 10, TimeUnit.SECONDS,
+                            new LinkedBlockingDeque<Runnable>(1024), new ThreadPool.MyThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
+                }
+            }
         }
-        System.out.println("线程池-1-跑完了");
-        //executor.shutdown();
-        ThreadPoolExecutor executor1 = new ThreadPoolExecutor(6,10,5,
-                TimeUnit.SECONDS,new SynchronousQueue<>());
-        for(int i=0;i<10;i++){
-            executor1.execute(thread);
-        }
-        System.out.println("线程池-2-跑完了");
+        return executor;
     }
+
+    /**
+     * 线程工厂
+     */
+    public static class MyThreadFactory implements ThreadFactory {
+        @Override
+        public Thread newThread(Runnable r) {
+            Thread t = new Thread(r);
+            t.setName("MyThreadPool-" + t.getName());
+            return t;
+        }
+    }
+
+
+    /**
+     * 测试
+     * @param args
+     */
+    public static void main(String[] args) {
+        CountDownLatch latch = new CountDownLatch(10);
+        Thread thread = new Thread(new MyRunable(latch));
+        for (int i=0;i<10;i++){
+            ThreadPool.getThreadPool().execute(thread);
+        }
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("所有子线程都跑完了，该跑主线程了");
+    }
+
+
+
 
 }

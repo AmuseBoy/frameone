@@ -2,6 +2,8 @@ package com.amuse.frameone.service;
 
 import com.amuse.frameone.common.model.User;
 
+import java.util.List;
+
 /**
  * @author 刘培振
  * @desc
@@ -11,5 +13,7 @@ public interface UserService {
 
     User getUser(Integer id);
 
-    void addUser(User user);
+    List<User> getUserList();
+
+    int addUser(User user);
 }

@@ -6,6 +6,8 @@ import com.amuse.frameone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author 刘培振
  * @desc
@@ -23,7 +25,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addUser(User user){
-        userMapper.addUser(user);
+    public List<User> getUserList() {
+        return userMapper.getUserList();
+    }
+
+    @Override
+    public int addUser(User user){
+        return userMapper.addUser(user);
     }
 }

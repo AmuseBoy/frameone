@@ -23,9 +23,21 @@
     </select>
 
 
-    <insert id="addUser" parameterType="com.amuse.frameone.common.model.User" >
-        insert into user (id, name, age, sex, birth, email, password) values (#{id},#{name},#{sex},#{birth},#{email},#{password})
+    <select id="getUserList" resultType="com.amuse.frameone.common.model.User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
+
+
+
+    <insert id="addUser" parameterType="com.amuse.frameone.common.model.User">
+        insert into user (name, age, sex, birth, email, password) values (#{name},#{age},#{sex},#{birth},#{email},#{password})
     </insert>
 
+    <insert id="saveAndUpdate" parameterType="com.amuse.frameone.common.model.User">
+        INSERT INTO USER(id,name,pwd,age,email)VALUES(1,'tom','123456',23,'tom@baiwang.com') ON DUPLICATE KEY UPDATE
+name= 'tom',pwd = '123456',age = 18,email = 'tom@baiwang.com';
+    </insert>
 
 </mapper>

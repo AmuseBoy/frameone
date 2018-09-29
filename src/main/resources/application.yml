@@ -63,3 +63,19 @@ mq:
   topicExchange: topicExchange
   topicQueue: topic.queue.test
   topicRoutingKey: topic.queue.#
+#FTP配置
+ftp:
+  host: 192.168.32.128
+  port: 21
+  username: admin
+  password: admin
+  controlEncoding: utf-8
+  connectTimeOut: 5000 #ftp 连接超时时间 毫秒
+  bufferSize: 1024 #缓冲区大小
+  fileType: 2 #传输数据格式   2表binary二进制数据
+  dataTimeout: 120000
+  useEPSVwithIPv4: false
+  passiveMode: true #是否启用被动模式
+  maxTotal: 200
+  maxIdle: 20
+  minIdle: 10

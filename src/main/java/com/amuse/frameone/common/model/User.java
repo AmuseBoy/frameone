@@ -20,6 +20,7 @@ public class User {
 
     private String sex;
 
+    //该注解用于接口类型互转
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birth;
 

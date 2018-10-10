@@ -3,14 +3,15 @@ package com.amuse.frameone.common.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author 刘培振
- * @desc 用户
+ * @desc 用户,实现序列化implements: myBaits二级缓存需要使用
  * @create 2018-04-22 20:32
  **/
-public class User {
+public class User implements Serializable {
 
     private Integer id;
 

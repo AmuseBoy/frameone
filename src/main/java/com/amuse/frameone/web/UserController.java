@@ -33,13 +33,17 @@ public class UserController {
      */
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
     public Map<String, Object> getUser(@RequestParam Integer id){
-        for(int i=0;i<100;i++){
-            logger.info("开始:{}",System.currentTimeMillis());
-            User user = userService.getUser(id);
-            logger.info("结束:{}",System.currentTimeMillis());
-        }
+//        for(int i=0;i<100;i++){
+//            logger.info("开始:{}",System.currentTimeMillis());
+//            User user = userService.getUser(id);
+//            logger.info("结束:{}",System.currentTimeMillis());
+//        }
         User user = userService.getUser(id);
-        return new ResultUtil().success(user);
+        user.setName("shabi");
+        User user1 = userService.getUser(id);
+        System.out.println("user:"+user.getName());
+        System.out.println("user1:"+user1.getName());
+        return new ResultUtil().success(user1);
     }
 
     /**
@@ -72,4 +76,17 @@ public class UserController {
         System.out.println("---耗时:---"+(endTime-startTime));
         return new ResultUtil().success();
     }
+
+    /**
+     * 保存或更新
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/saveAndUpdate",method = RequestMethod.POST)
+    public Map<String,Object> saveAndUpdate(@RequestBody User user){
+        int j = userService.saveAndUpdate(user);
+        logger.info("影响行数:"+j);
+        return new ResultUtil().success();
+    }
+
 }

@@ -16,4 +16,6 @@ public interface UserService {
     List<User> getUserList();
 
     int addUser(User user);
+
+    int saveAndUpdate(User user);
 }

@@ -2,6 +2,13 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <!-- 配置放置有先后顺序 -->
+
+    <settings>
+        <!-- MyBaits二级缓存，并且实体类实现序列号接口,并再mapper文件中加 <cache></cache> -->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
     <typeAliases>
         <package name="com.amuse.frameone.common.model"/>
     </typeAliases>
@@ -9,5 +16,6 @@
     <mappers>
         <mapper resource="com/amuse/frameone/dao/mappers/UserMapper.xml"/>
     </mappers>
+
 
 </configuration>

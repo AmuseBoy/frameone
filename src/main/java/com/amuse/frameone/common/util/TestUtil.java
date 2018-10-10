@@ -1,6 +1,7 @@
 package com.amuse.frameone.common.util;
 
 import com.amuse.frameone.common.model.Book;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -85,7 +86,12 @@ public class TestUtil {
 //        long l = 1536215100000l;
 //        long ls = 1535699922822l;
 //        System.out.println(new Date(l)+" "+new Date(ls));
-        System.out.println(new Date().getTime());
+//        System.out.println(new Date().getTime());
+
+        Book book = new Book("22","sss");
+        Book book1 = new Book("11","sss");
+        boolean b = StringUtils.equals(book.getName(),book1.getName());
+        System.out.println(b);
     }
 
     public static void set(Book book){

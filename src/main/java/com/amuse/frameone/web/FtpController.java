@@ -6,6 +6,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,7 @@ public class FtpController {
      * 测试FTP连接池
      */
     @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @Transactional
     public void ftpTest(){
         try {
             FTPClient ftpClient = ftpClientPool.borrowObject();
@@ -37,7 +39,12 @@ public class FtpController {
             String[] names = ftpClient.listNames();
             for (String s : names){
                 logger.info("fielName:"+s);
+                if(s.equals("new.txt")){
+                    logger.info("删除文件");
+                    ftpClient.deleteFile(s);
+                }
             }
+            throw new NullPointerException();
         } catch (Exception e) {
             e.printStackTrace();
         }

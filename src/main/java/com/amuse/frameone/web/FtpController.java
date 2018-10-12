@@ -44,10 +44,12 @@ public class FtpController {
                     ftpClient.deleteFile(s);
                 }
             }
-            throw new NullPointerException();
+            //throw new NullPointerException();
+            ftpClientPool.returnObject(ftpClient);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 

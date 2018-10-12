@@ -88,10 +88,29 @@ public class TestUtil {
 //        System.out.println(new Date(l)+" "+new Date(ls));
 //        System.out.println(new Date().getTime());
 
-        Book book = new Book("22","sss");
-        Book book1 = new Book("11","sss");
-        boolean b = StringUtils.equals(book.getName(),book1.getName());
-        System.out.println(b);
+//        Book book = new Book("22","sss");
+//        Book book1 = new Book("11","sss");
+//        boolean b = StringUtils.equals(book.getName(),book1.getName());
+//        System.out.println(b);
+
+        TestUtil t= new TestUtil();
+        String s = t.test();
+        System.out.println(s);
+
+    }
+
+    private String test(){
+        try {
+            int i = 9;
+            //throw new NullPointerException();
+            //return "4";
+
+        } catch (Exception e) {
+            return "3";
+        } finally {
+            //return "1";
+        }
+        return "2";
     }
 
     public static void set(Book book){

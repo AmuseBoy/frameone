@@ -1,15 +1,13 @@
 package com.amuse.frameone.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.amuse.frameone.common.model.BookProperties;
 import com.amuse.frameone.common.model.BookStaticProperties;
 import com.amuse.frameone.common.model.Book;
 import com.amuse.frameone.common.util.ApplicationContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/feature")
 public class FeatureController {
+
 
     @Autowired
     private Book book;
@@ -103,4 +102,23 @@ public class FeatureController {
         return book;
     }
 
+    /**
+     *http://localhost:8002/feature/psotForMap
+     * @param map
+     */
+    @RequestMapping(value = "/psotForMap" , method = RequestMethod.POST)
+    public void postForMap(@RequestBody Map map){
+        System.out.println(map.get("id"));
+        System.out.println(map.get("name"));
+    }
+
+    /**
+     *http://localhost:8002/feature/postForJson
+     * @param jsonObject
+     */
+    @RequestMapping(value = "/postForJson" , method = RequestMethod.POST)
+    public void postForJson(@RequestBody JSONObject jsonObject){
+        System.out.println(jsonObject.getString("id"));
+        System.out.println(jsonObject.getString("name"));
+    }
 }

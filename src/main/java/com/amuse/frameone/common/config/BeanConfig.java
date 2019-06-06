@@ -19,28 +19,25 @@ import org.springframework.core.env.Environment;
 @PropertySource("classpath:book.properties")
 public class BeanConfig {
 
-//    @Autowired
-//    private Environment env;
-
-    /**
-     * 使用注入
-     * @return
-     */
-    @Bean(name = "book")
-    @ConfigurationProperties(prefix = "book")
-    public Book getBook(){
-        return new Book();
-    }
-
 //    /**
-//     * 使用env
+//     * 使用注入
 //     * @return
 //     */
-//    @Bean
+//    @Bean(name = "book")
+//    @ConfigurationProperties(prefix = "book")
 //    public Book getBook(){
-//        Book book = new Book();
-//        book.setId(env.getProperty("book.id"));
-//        book.setName(env.getProperty("book.name"));
-//        return book;
+//        return new Book();
 //    }
+
+    /**
+     * 使用env
+     * @return
+     */
+    @Bean
+    public Book getBook(Environment env){
+        Book book = new Book();
+        book.setId(env.getProperty("book.id"));
+        book.setName(env.getProperty("book.name"));
+        return book;
+    }
 }

@@ -1,4 +1,4 @@
-项目做了哪些工作：
+**项目做了哪些工作:**
 
 1.项目架构设计，三层设计，frameone下分为5个文件夹（common\dao\integration\service\web）
 
@@ -23,3 +23,9 @@
 11.使用jwt的token验证方式，登陆接口密码传输是明文，生产环境请使用https加密；
 
 12.spring boot定时任务,包含多线程并发定时任务执行
+
+13.项目写了RocketMQ的示例
+
+14.项目写了FTP的示例,并写了FTP连接池
+
+15.项目集成了MongoDB的使用方式

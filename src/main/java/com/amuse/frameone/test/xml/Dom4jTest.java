@@ -17,22 +17,44 @@ import java.util.List;
  */
 public class Dom4jTest {
 
+    /**
+     * <?xml version="1.0" encoding="UTF-8"?>
+     * <students>
+     * 	<student id="01">
+     *         <name>张三</name>
+     *         <age>18</age>
+     *     </student>
+     *     <student id="02">
+     *         <name>李四</name>
+     *         <age>28</age>
+     *     </student>
+     *     <student id="01">
+     *         <name>张三</name>
+     *         <age>18</age>
+     *     </student>
+     *     <student id="02">
+     *         <name>李四</name>
+     *         <age>28</age>
+     *     </student>
+     * </students>
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             SAXReader reader = new SAXReader();
-            Document document = reader.read(new File("E:\\a\\b\\c\\qwe.xml"));
+            Document document = reader.read(new File("E:\\abc.xml"));
             Element rootElement = document.getRootElement();
-            Element headElement = rootElement.element("HEAD");
-            //if(headElement.)
-
+            System.out.println(rootElement.getName());
+            Element headElement = rootElement.element("student");
+            System.out.println(headElement.getName());
 
 //            System.out.println(rootElement.getName());
 //            System.out.println(rootElement.getText());
-//            List<Element> elements = rootElement.elements();
-//            for (Element element : elements) {
-//                System.out.println(element.getName());
-//                System.out.println(element.getTextTrim());
-//            }
+            List<Element> elements = headElement.elements();
+            for (Element element : elements) {
+                System.out.println(element.getName());
+                System.out.println(element.getTextTrim());
+            }
         } catch (DocumentException e) {
             e.printStackTrace();
         }

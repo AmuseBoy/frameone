@@ -42,6 +42,7 @@ public class FTPClientPool {
             pool.setMaxTotal(ftpPoolConfig.getMaxTotal());
             pool.setMaxIdle(ftpPoolConfig.getMaxIdle());
             pool.setMinIdle(ftpPoolConfig.getMinIdle());
+            pool.setTestOnBorrow(true);
         }
         pools.put(ftpPoolConfig.getHost(),pool);
         return pool;

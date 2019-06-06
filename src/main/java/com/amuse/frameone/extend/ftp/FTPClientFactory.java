@@ -81,7 +81,7 @@ public class FTPClientFactory extends BasePooledObjectFactory<FTPClient> {
     public void destroyObject(PooledObject<FTPClient> p) throws Exception {
         FTPClient ftpClient = p.getObject();
         ftpClient.logout();
-        super.destroyObject(p);
+        ftpClient.disconnect();
     }
 
     @Override

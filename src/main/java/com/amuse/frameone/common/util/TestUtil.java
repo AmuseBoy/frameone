@@ -93,9 +93,11 @@ public class TestUtil {
 //        boolean b = StringUtils.equals(book.getName(),book1.getName());
 //        System.out.println(b);
 
-        TestUtil t= new TestUtil();
-        String s = t.test();
-        System.out.println(s);
+//        TestUtil t= new TestUtil();
+//        String s = t.test();
+//        System.out.println(s);
+
+        System.out.println(System.nanoTime());
 
     }
 

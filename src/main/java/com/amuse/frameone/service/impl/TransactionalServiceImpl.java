@@ -31,8 +31,16 @@ public class TransactionalServiceImpl implements TransactionalService {
     public void addUser(User user){
 
         try {
-            userMapper.addUser(user);
-            this.sss();
+            User userQuery = userMapper.getUserByName(user.getName());
+            if (null == userQuery) {
+                try {
+                    userMapper.addUser(user);
+                    Thread.sleep(15000);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
+                }
+            }
+            //this.sss();
 
             //throw new BusinessException(SystemEnum.SERVICE_ERROR);
         } catch (NullPointerException e) {

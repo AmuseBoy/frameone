@@ -93,26 +93,33 @@ public class TestUtil {
 //        boolean b = StringUtils.equals(book.getName(),book1.getName());
 //        System.out.println(b);
 
-//        TestUtil t= new TestUtil();
-//        String s = t.test();
-//        System.out.println(s);
-
-        System.out.println(System.nanoTime());
-
+        System.out.println("结果"+TestUtil.test2(6));
     }
 
-    private String test(){
-        try {
-            int i = 9;
-            //throw new NullPointerException();
-            //return "4";
-
-        } catch (Exception e) {
-            return "3";
-        } finally {
-            //return "1";
+    private static String test2(int n){
+        String result = "";
+        for(int i=1 ;i <= n ; i++){
+            if(i == 1){
+                result = "1";
+            } else {
+                StringBuilder sb = new StringBuilder();
+                int count = 0;
+                char temp = result.charAt(0);
+                for(int j=0;j<result.length();j++){
+                    if(result.charAt(j) == temp){
+                        count++;
+                    }else {
+                        sb.append(count).append(temp);
+                        temp = result.charAt(j);
+                        count = 1;
+                    }
+                }
+                sb.append(count).append(temp);
+                System.out.println(sb);
+                result = sb.toString();
+            }
         }
-        return "2";
+        return result;
     }
 
     public static void set(Book book){

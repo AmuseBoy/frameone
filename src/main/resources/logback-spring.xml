@@ -36,7 +36,7 @@
 
     <!--输出日志到第三方工具-->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>127.0.0.1:4567</destination>
+        <destination>192.168.32.128:4567</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"></encoder>
     </appender>
 
@@ -50,7 +50,7 @@
         <appender-ref ref="CONSOLE" /> <!-- base.xml -->
         <appender-ref ref="FILE" />   <!-- base.xml -->
         <appender-ref ref="file" />
-        <!--<appender-ref ref="LOGSTASH" />-->
+        <appender-ref ref="LOGSTASH" />
     </root>
     <!--和logging.level.com.amuse.frameone 一样 -->
     <logger name="com.amuse.frameone" level="info" additivity="false">
@@ -59,7 +59,7 @@
         <appender-ref ref="CONSOLE" /> <!-- base.xml -->
         <appender-ref ref="FILE" />   <!-- base.xml -->
         <appender-ref ref="file" />
-        <!--<appender-ref ref="LOGSTASH" />-->
+        <appender-ref ref="LOGSTASH" />
     </logger>
 
 </configuration>

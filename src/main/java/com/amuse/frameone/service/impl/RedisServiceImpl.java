@@ -4,6 +4,11 @@ import com.amuse.frameone.common.util.RedisUtil;
 import com.amuse.frameone.service.RedisService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.Jedis;
@@ -24,6 +29,9 @@ import java.util.UUID;
 public class RedisServiceImpl implements RedisService {
 
     private static final Logger logger = LoggerFactory.getLogger(RedisServiceImpl.class);
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     private static Map<String ,Integer> stockMap = null;
     private static Map<String, String> orderMap = new HashMap<>();//订单map
@@ -113,5 +121,62 @@ public class RedisServiceImpl implements RedisService {
         return false;
     }
 
+
+    /***
+     * @Description: //使用RedisTemplate来做上述操作 （lambda表达式）
+     * @Param:  [lockKey, value]
+     * @Return: boolean
+     * @Author: 刘培振
+     * @Date:   2019/8/26 16:46
+     */
+    public boolean tryLock(String lockKey, String value) {
+        return redisTemplate.execute((RedisCallback<Boolean>) (RedisConnection redisConnection) -> {
+            Jedis jedis = (Jedis) redisConnection.getNativeConnection();
+            //已经存在锁，循环等待获取
+            while (jedis.exists(lockKey)) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            String result = jedis.set(lockKey, value, "NX", "PX", 5000);
+            jedis.close();
+            if ("OK".equals(result)) {
+                return true;
+            }
+            return false;
+        });
+    }
+
+    /***
+     * @Description: 内部类写法
+     * @Param:  [lockKey, value]
+     * @Return: boolean
+     * @Author: 刘培振
+     * @Date:   2019/8/26 16:55
+     */
+    public boolean tryLock2(String lockKey, String value) {
+        return redisTemplate.execute(new RedisCallback<Boolean>() {
+            @Override
+            public Boolean doInRedis(RedisConnection redisConnection) throws DataAccessException {
+                Jedis jedis = (Jedis) redisConnection.getNativeConnection();
+                //已经存在锁，循环等待获取
+                while (jedis.exists(lockKey)) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                String result = jedis.set(lockKey, value, "NX", "PX", 5000);
+                jedis.close();
+                if ("OK".equals(result)) {
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 
 }

@@ -5,6 +5,7 @@ import com.amuse.frameone.common.exception.BusinessException;
 import com.amuse.frameone.common.model.User;
 import com.amuse.frameone.dao.UserMapper;
 import com.amuse.frameone.service.TransactionalService;
+import com.amuse.frameone.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class TransactionalServiceImpl implements TransactionalService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private UserService userService;
+
     @Override
     @Transactional
     public void addUser(User user){
@@ -34,8 +38,8 @@ public class TransactionalServiceImpl implements TransactionalService {
             User userQuery = userMapper.getUserByName(user.getName());
             if (null == userQuery) {
                 try {
-                    userMapper.addUser(user);
-                    Thread.sleep(15000);
+                    userService.addUser(user);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }

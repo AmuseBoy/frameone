@@ -6,6 +6,7 @@ import com.amuse.frameone.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,17 +33,25 @@ public class UserController {
      * @Date 2018/4/22-20:36
      */
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
+    //@Transactional
     public Map<String, Object> getUser(@RequestParam Integer id){
 //        for(int i=0;i<100;i++){
 //            logger.info("开始:{}",System.currentTimeMillis());
 //            User user = userService.getUser(id);
 //            logger.info("结束:{}",System.currentTimeMillis());
 //        }
-        User user = userService.getUser(id);
-        user.setName("shabi");
+//        User user = userService.getUser(id);
+//        System.out.println("user:"+user.getName());
+//        try {
+//            Thread.sleep(1000*30);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         User user1 = userService.getUser(id);
-        System.out.println("user:"+user.getName());
         System.out.println("user1:"+user1.getName());
+        user1.setAge(100);
+        userService.saveAndUpdate(user1);
+        System.out.println("我有没有输出");
         return new ResultUtil().success(user1);
     }
 

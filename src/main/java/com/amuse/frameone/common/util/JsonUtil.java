@@ -39,6 +39,9 @@ public class JsonUtil {
 
         str = JSON.toJSONString(book);
         System.out.println("javaBean->string:"+str);
+
+        jsonObject = (JSONObject) JSONObject.toJSON(book);
+        System.out.println("javaBean->jsonObject:" + jsonObject);
     }
 
 

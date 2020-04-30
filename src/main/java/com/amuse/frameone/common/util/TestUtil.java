@@ -88,12 +88,20 @@ public class TestUtil {
 //        System.out.println(new Date(l)+" "+new Date(ls));
 //        System.out.println(new Date().getTime());
 
-//        Book book = new Book("22","sss");
-//        Book book1 = new Book("11","sss");
-//        boolean b = StringUtils.equals(book.getName(),book1.getName());
-//        System.out.println(b);
 
-        System.out.println("结果"+TestUtil.test2(6));
+
+//        String s = new String("");
+//        try {
+//            synchronized (s){
+//                s.wait();
+//                s.notify();
+//            }
+//
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
     private static String test2(int n){

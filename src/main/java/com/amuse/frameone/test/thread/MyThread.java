@@ -11,15 +11,36 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
-        for (int i=0;i<10;i++){
-            System.out.println(Thread.currentThread().getName()+":"+i);
+        try {
+            super.run();
+            long beginTime = System.currentTimeMillis();
+            int count = 0;
+            for(int i = 0; i < 50000000; i ++){
+                if(Thread.interrupted()){
+                    throw new InterruptedException();
+                }
+                //Thread.yield();
+                count = count + i;
+                System.out.println(count);
+            }
+            long endTiem = System.currentTimeMillis();
+            System.out.println("用时:"+(endTiem - beginTime) + "毫秒");
+        } catch (InterruptedException e) {
+            System.out.println("捕获异常");
+            e.printStackTrace();
         }
     }
 
     public static void main(String[] args) {
-        MyThread myThread1 = new MyThread();
-        MyThread myThread2 = new MyThread();
-        myThread1.start();
-        myThread2.start();
+        try {
+            MyThread myThread1 = new MyThread();
+            myThread1.start();
+            //myThread1.setDaemon(true);
+            Thread.sleep(2000);
+            myThread1.interrupt();
+        } catch (InterruptedException e) {
+            System.out.println("main捕获异常");
+            e.printStackTrace();
+        }
     }
 }

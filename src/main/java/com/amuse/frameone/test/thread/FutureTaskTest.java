@@ -13,6 +13,12 @@ import java.util.concurrent.FutureTask;
  */
 public class FutureTaskTest {
 
+//    public static void main(String[] args) {
+//        new Thread(() -> {
+//            System.out.println("ss");
+//        }).start();
+//    }
+
     /**
      * 内部类线程使用方式
      * @param args

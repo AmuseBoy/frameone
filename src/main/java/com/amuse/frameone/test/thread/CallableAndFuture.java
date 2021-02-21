@@ -19,7 +19,7 @@ public class CallableAndFuture {
                 new Callable<String>() {
                     @Override
                     public String call() throws Exception {
-                        Thread.sleep(2000);
+                        Thread.sleep(5000);
                         return "返回值";
                     }
                 }
